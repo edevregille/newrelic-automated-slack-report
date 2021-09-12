@@ -1,0 +1,15 @@
+{
+  "name": "newrelic-automated-report",
+  "version": "1.0.0",
+  "description": "lambda automatically triggered to send in a slack channel a performance report",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "evregille",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "dotenv": "^10.0.0"
+  }
+}

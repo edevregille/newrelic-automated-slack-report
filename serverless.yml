@@ -1,0 +1,25 @@
+service: newrelic-automated-report
+frameworkVersion: '2'
+useDotenv: true
+configValidationMode: error
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-west-2
+  lambdaHashingVersion: 20201221
+  
+functions:
+  report:
+    handler: handler.report
+    description: automate New Relic performance report
+    memorySize: 128
+    timeout: 120
+    environment:
+      NEW_RELIC_API_USER_KEY: ${env:NEW_RELIC_API_USER_KEY}
+      NEW_RELIC_ACCOUNT_ID: ${env:NEW_RELIC_ACCOUNT_ID}
+      SLACK_WEBHOOK_URL: ${env:SLACK_WEBHOOK_URL}
+    events:
+      - schedule:
+          rate: cron(0 0 ? * MON *) 
+          enabled: true
